@@ -32,6 +32,7 @@ public class EnterActivity extends AppCompatActivity implements DataView {
     int start, stop, startPress, stopPress;
     Calendar c;
     int count = 1;
+    int n = 15;
 
 
     @Override
@@ -72,7 +73,7 @@ public class EnterActivity extends AppCompatActivity implements DataView {
             mPaint.setColor(Color.WHITE);
             canvas.drawPaint(mPaint);
             mPaint.setAntiAlias(true);
-            if (count <= 10) {
+            if (count <= n) {
                 cx = radius + 10 + rdm.nextInt(size.x - (int) radius * 2);
                 cy = radius + 10 + rdm.nextInt(size.y - (int) radius * 5);
                 mPaint.setColor(Color.GREEN);
@@ -96,7 +97,7 @@ public class EnterActivity extends AppCompatActivity implements DataView {
         }
 
         public boolean onTouchEvent(MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN && count <= 10) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN && count <= n) {
                 touchX = event.getX();
                 touchY = event.getY();
                 if (Math.sqrt(Math.pow(touchX - cx, 2.0) + Math.pow(touchY - cy, 2.0)) <= radius) {
@@ -108,7 +109,7 @@ public class EnterActivity extends AppCompatActivity implements DataView {
                 }
             }
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (Math.sqrt(Math.pow(touchX - cx, 2.0) + Math.pow(touchY - cy, 2.0)) <= radius && count <= 10) {
+                if (Math.sqrt(Math.pow(touchX - cx, 2.0) + Math.pow(touchY - cy, 2.0)) <= radius && count <= n) {
                     c = Calendar.getInstance();
                     stopPress = c.get(Calendar.MILLISECOND) + c.get(Calendar.SECOND) * 1000 + c.get(Calendar.MINUTE) * 60000 + c.get(Calendar.HOUR) * 3600000;
                     dataPresenter.addTimePress();
