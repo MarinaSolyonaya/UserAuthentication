@@ -1,4 +1,4 @@
-package com.example.marina.userauthentication;
+package com.example.marina.userauthentication.DataModel;
 
 public interface DataView {
     int getTimePress();
